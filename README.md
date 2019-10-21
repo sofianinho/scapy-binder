@@ -9,9 +9,9 @@ Access this Binder at the following URL
 http://mybinder.org/v2/gh/sofianinho/scapy-binder/master
 
 ## Notes
-The `requirements.txt` file should list all Python libraries that your notebooks
-depend on, and they will be installed using:
 
+For better results, especially for the permissions that are necessary to forge packets:
 ```
-pip install -r requirements.txt
+docker run --rm --privileged -p 8080:8888  --user root sofianinho/scapy-binder:latest jupyter  notebook --ip=0.0.0.0 --allow-root
 ```
+
