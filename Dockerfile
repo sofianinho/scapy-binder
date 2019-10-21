@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.6-slim
 
 # Install the iproute2, traceroute, and iputils-ping utilities
 RUN apt-get update -q && \
@@ -8,7 +8,7 @@ RUN apt-get update -q && \
             traceroute
 # install the notebook package
 RUN pip install --no-cache --upgrade pip && \
-    pip install --no-cache notebook
+    pip install --no-cache notebook scapy==2.4.2
 
 # create user with a home directory
 ARG NB_USER=notebook
