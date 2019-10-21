@@ -1,11 +1,14 @@
 FROM python:3.6-slim
 
-# Install the iproute2, traceroute, and iputils-ping utilities
+# Install the iproute2, traceroute, tcpdump, and iputils-ping utilities
 RUN apt-get update -q && \
     apt-get install -y --no-install-recommends \
             iproute2 \
+            tcpdump \
             iputils-ping \
-            traceroute
+            traceroute && \
+    mv /usr/sbin/tcpdump /usr/bin/tcpdump
+
 # install the notebook package
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook scapy==2.4.2
@@ -24,11 +27,4 @@ RUN adduser --disabled-password \
 COPY . ${HOME}
 
 WORKDIR ${HOME}
-#USER ${USER}
-
-#experimenting with the permissions
-USER root 
-
-EXPOSE 8888
-
-CMD ["jupyter", "notebook", "--port=8888", "--ip=0.0.0.0", "--allow-root"]
+USER ${USER}
