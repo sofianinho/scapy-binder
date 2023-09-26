@@ -7,7 +7,7 @@ RUN apt-get update -q && \
             tcpdump \
             iputils-ping \
             traceroute && \
-    mv /usr/sbin/tcpdump /usr/bin/tcpdump
+    mv /usr/sbin/tcpdump /usr/bin/tcpdump ||true
 
 # install the notebook package
 RUN pip install --no-cache --upgrade pip && \
